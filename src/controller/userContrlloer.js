@@ -1,5 +1,6 @@
 import userDataModel from '../model/userModel';
 import productDataModel from '../model/productModel';
+import orderDataModel from '../model/orderModel';
 
 const users = async (req, res) => {
     try {
@@ -26,14 +27,30 @@ const findProduct = async (req, res) => {
     }
 };
 
+/* const addUserProduct = async (req, res) => {
+    try {
+        productDataModel.findOne({ productId: req.params.id }, (error, data) => {
+            if (error) { return handleError(error); }
+            productDataModel.data = data;
+            console.log(productDataModel.data);
+            res.status(201).json(productDataModel.data);
+            res.end();
+        });
+    } catch (err) { res.status(404).send(err); }
+}; */
+
+
 const addUserProduct = async (req, res) => {
     try {
-        const newProduct = new productDataModel(req.body);
-        res.status(201).json(await userDataModel.save());
+        productDataModel.find({ productId: req.params.id }, (err, data) => {
+            orderDataModel.insertMany(data);
+        });
+        const result = orderDataModel.findOneAndUpdate({ productId: req.params.id }, { productQuantity: req.params.quantity, productStatus: 'Order confirmed' });
+        res.status(201).json(await result);
     } catch (err) {
         res.status(500).send(err);
     }
-}
+};
 
 
 const userMethods = {

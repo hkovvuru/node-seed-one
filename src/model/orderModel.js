@@ -1,6 +1,6 @@
 import mongoose from '../config/dbConfig';
 
-const productSchema = new mongoose.Schema({
+const orderSchema = new mongoose.Schema({
     productId: {
         type: Number,
     },
@@ -18,6 +18,6 @@ const productSchema = new mongoose.Schema({
     },
 });
 
-const productDataModel = mongoose.model('Product', productSchema);
+const orderDataModel = mongoose.model('Order', orderSchema);
 
-export default productDataModel;
+export default orderDataModel;

@@ -17,9 +17,27 @@ const addProduct = async (req, res) => {
     }
 };
 
+const updateProduct = async (req, res) => {
+    try {
+        res.status(201).json(await productDataModel.findOneAndUpdate({ productId: req.params.id }, req.body));
+    } catch (err) {
+        res.status(500).send(err);
+    }
+};
+
+const deleteProduct = async (req, res) => {
+    try {
+        res.status(200).json(await productDataModel.findOneAndDelete({ productId: req.params.id }, req.body));
+    } catch (err) {
+        res.status(404).send(err);
+    }
+};
+
 const productMethods = {
     totalProducts,
     addProduct,
+    updateProduct,
+    deleteProduct,
 };
 
 export default productMethods;

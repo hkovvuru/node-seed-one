@@ -9,7 +9,7 @@ userRouter.get('/users', userMethods.users);
 
 userRouter.get('/find-product/:id', userMethods.findProduct);
 
-userRouter.post('/find-product', userMethods.addUserProduct);
+userRouter.post('/find-product/checkout-product/:quantity/:id', userMethods.addUserProduct);
 
 
 export default userRouter;
