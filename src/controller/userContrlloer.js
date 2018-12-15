@@ -40,7 +40,7 @@ const findProduct = async (req, res) => {
 }; */
 
 
-const addUserProduct = async (req, res) => {
+const addSelectedProduct = async (req, res) => {
     try {
         productDataModel.find({ productId: req.params.id }, (err, data) => {
             orderDataModel.insertMany(data);
@@ -57,7 +57,7 @@ const userMethods = {
     users,
     addUser,
     findProduct,
-    addUserProduct,
+    addSelectedProduct,
 };
 
 export default userMethods;

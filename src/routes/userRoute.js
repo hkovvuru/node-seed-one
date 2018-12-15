@@ -3,13 +3,17 @@ import { userMethods } from '../controller';
 
 const userRouter = new Router();
 
+// add the user details
 userRouter.post('/add-users', userMethods.addUser);
 
-userRouter.get('/users', userMethods.users);
+// get the all users details
+userRouter.get('/', userMethods.users);
 
+// search the product by the user
 userRouter.get('/find-product/:id', userMethods.findProduct);
 
-userRouter.post('/find-product/checkout-product/:quantity/:id', userMethods.addUserProduct);
+// checkout the product and update the quantity and status of an product
+userRouter.post('/find-product/checkout-product/:quantity/:id', userMethods.addSelectedProduct);
 
 
 export default userRouter;
